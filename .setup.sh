@@ -5,6 +5,9 @@ atcoder_venv_path="$venv_path/atcoder"
 venv_python_path="$atcoder_venv_path/bin/python3"
 venv_pip3_path="$atcoder_venv_path/bin/pip3"
 
+python_template_file_path=".template.py"
+
+
 if [ ! -d $venv_path ]; then
     mkdir -p $venv_path
 fi
@@ -13,6 +16,16 @@ if [ ! -f $venv_python_path ]; then
     python3 -m venv $atcoder_venv_path
     $venv_pip3_path install numpy autopep8
 fi
+
+for i in {a..f} ; do
+    if [ ! -f "${i}.py" ]; then
+        cp $python_template_file_path "${i}.py"
+    fi
+    
+    if [ ! -f "${i}-input.txt" ]; then
+        touch "${i}-input.txt"
+    fi
+done
 
 if [ ! -d ./.vscode ]; then
     mkdir -p ./.vscode
