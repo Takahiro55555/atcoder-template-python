@@ -23,3 +23,11 @@ if [ ! -f ./.vscode/settings.json ]; then
     echo "    \"python.pythonPath\": \"$venv_python_path\"" >> ./.vscode/settings.json
     echo "}" >> ./.vscode/settings.json
 fi
+
+if [ 1 -ne `code --list-extensions | grep "ms-python.python" | wc -l` ]; then
+    code --install-extension ms-python.python
+fi
+
+if [ 1 -ne `code --list-extensions | grep "ms-python.vscode-pylance" | wc -l` ]; then
+    code --install-extension ms-python.vscode-pylance
+fi
